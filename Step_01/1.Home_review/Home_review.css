@@ -1,0 +1,19 @@
+#firstid {
+    color: blue;
+    text-align: center;
+    border: 5px solid teal;
+  }
+  .class {
+    color: brown;
+  }
+  table{
+    margin: auto;
+    width: 10%;
+    text-align: center;
+    border-collapse: collapse; /* 테이블 간격 없애기 */
+    border: 1px solid black;
+  }
+  th, td { /* th : table header 제목이 되는 헤더 셀, td : table data 데이터 셀 */
+    text-align: left;
+    border: 1px solid black;
+  }
