@@ -24,8 +24,9 @@
     background-color: rgba(135, 207, 235, 0.411);
 }
 
-.t2 {
+#t2 {
     border: 1px solid black;
+    border-collapse: collapse;
 }
 .th2, .td2 {
     border: 1px solid black;
