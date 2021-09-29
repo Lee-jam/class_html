@@ -1,5 +1,6 @@
 # class_html
-👋 첫 `Html, CSS, Github` 사용법을 익히기 위한 스터디입니다.
+👋 첫 `Html, CSS, Github` 사용법을 익히기 위한 스터디입니다. <br/>
+각 Step 별 페이지에 공부내용이 `ReadMe` 로 정리되어 있습니다.
 
 ### 📖참여자
 

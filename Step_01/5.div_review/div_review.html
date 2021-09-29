@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>210928 review</title>
+  <link rel="stylesheet" href="div_review.css">
+</head>
+
+
+
+<body>
+  <div class="background1">
+    <h1 class="background2">210928 복습 내용</h1>
+    <p>오늘은 밑의 4가지의 요소에 대해 공부했다.</p>
+    <button onclick="onTable()">SHOW TABLE</button>
+    <button onclick="offTable()">HIDE TABLE</button>
+    <hr>
+    <table class="border1" id="tables" style="display: none;">
+      <tr>
+        <th>요 소</th>
+        <th colspan="2">내 용</td>
+      </tr>
+      <tr>
+        <th>block</th>
+        <td colspan="2">
+          <span>
+          <b>block</b>
+        </span>은 항상 사용할 수 있는 최대의 너비를 사용, 새 줄로 넘어감.</td>
+      </tr>
+      <tr>
+        <th>inline</th>
+        <td colspan="2">
+          <span>
+            <b>inline</b>
+          </span>은 블럭과 반대로 최소의 너비를 사용, 새 줄로 넘기지 않음.</td>
+      </tr>
+      <tr>
+        <th>class</th>
+        <td colspan="2">
+          <span>
+            <b>class</b>
+          </span>는 요소들에게 클래스를 부여하며 다른 요소에 같은 클래스를 부여할 수 있음.
+        </td>
+      </tr>
+      <tr>
+        <th>id</th>
+        <td colspan="2">
+          <span>
+            <b>id</b>
+          </span>는 요소들에게 고유 아이디를 부여하며 다른 요소에 같은 아이디를 부여할 수 없음.
+        </td>
+      </tr>
+    </table>
+    <br>
+    <button onclick="Button()">div확인</button>
+    <div id="div1" class="background2" style="display: none;">
+      <h1 >헤더 1에 다른 백그라운드 적용함.</h1>
+      <p>block 안에 block 만들기</p>
+
+    </div>
+  </div>
+
+  <script>
+    function onTable() {
+      const tb = document.getElementById("tables");
+        tb.style.display="";
+    }
+    function offTable(){
+      const tb  = document.getElementById("tables");
+      tb.style.display="none";     
+    }
+    function Button(){
+      document.getElementById("div1").style.display="";
+    }
+  </script>
+</body>
+</html>

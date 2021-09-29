@@ -1,0 +1,34 @@
+#header1 {
+    text-align: center;
+    size: 50px;
+}
+
+.t1 {
+    border : 1px solid black;
+    border-radius: 10px;
+    width: 50%;
+    border-spacing: 10px;
+}
+.th1, .td1 {
+    border: 1px solid black;
+    padding: 10px;
+}
+.tr1:nth-child(even) {
+
+    background-color: blue;
+}
+.th1:nth-child(even) {
+    background-color: blue;
+}
+.td1:nth-child(odd) {
+    background-color: rgba(135, 207, 235, 0.411);
+}
+
+#t2 {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.th2, .td2 {
+    border: 1px solid black;
+    padding: 15px;
+}
