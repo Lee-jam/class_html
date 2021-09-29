@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 가입 테스트</title>
+  </head>
+  <script>
+    function checkpwd_1() {
+      var pwdd = document.getElementById('pwd').value;
+      var checkpwdd = document.getElementById('checkpwd').value;
+
+      if( pwdd !='' && checkpwdd !=''){
+        if( pwdd == checkpwdd){
+          document.getElementById('check').innerHTML="비밀번호가 일치합니다.";
+          document.getElementById('check').style.color='blue';
+        }
+        else{
+          document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+          document.getElementById('check').style.color='red';
+        }
+      }
+    }
+    
+    function check_id(){
+      var id = document.getElementById('user_id').value;
+      var SC = ["!","@","#","$","%","*"];
+      var check_SC = 0;
+      for(var i=0;i<SC.length;i++) {
+                if(id.indexOf(SC[i]) != -1){
+                    check_SC = 1;
+                }
+              }
+      if(id !=""){
+        if(id.length <8 || check_SC == 0){
+          document.getElementById("check1").innerHTML="아이디 형식에 맞춰주세요.(영문,숫자,특수문자 조합 8자 이상)";
+          document.getElementById("check1").style.color="red";
+        }
+        else{
+          document.getElementById("check1").innerHTML="사용가능한 아이디입니다.";
+          document.getElementById("check1").style.color="blue";
+        }
+      }
+    }
+  </script>
+  <body>
+    <form action="">
+      <div>
+        <h2>회원정보 <span style="color: red;">(필수)</span></h2>
+        <table>
+          <tr>
+            <td>
+              <label for="name">이 름: </label>
+              </td>
+            <td>
+              <input type="text" name="name" size="10px">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="userid">아 이 디: </label>
+            </td>
+            <td>
+              <input type="text" name="userid" id="user_id" size="20px">
+              <input type="button" value="중복확인" id="Checkid" onclick="check_id()">
+              <span id="check1"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>비 밀 번 호</td>
+            <td>
+              <input type="password" name="PW1" id="pwd" size="20px">
+            </td>
+          </tr>
+          <tr>
+            <td>비 밀 번 호 확인</td>
+            <td>
+              <input type="password" name="PW2" id="checkpwd" size="20px" onchange="checkpwd_1()"> 
+              <span id="check"></span></td>
+            <!-- onchange 속성: 이는 키보드로 입력 후 변화가 생겼을 때 발생하는 이벤트를 의미 -->
+            <!-- name, id, function_name이 겹치지않도록 지정해주는 것이 좋음 -->
+          </tr>
+          <tr>
+            <td>
+              <label for="gender">성 별: </label>
+            </td>
+            <td>
+              <input type="radio" name="gender" value="남">남
+              <input type="radio" name="gender" value="여">여</td>
+              <!-- type radio는 같은 공간내의 radio 중 1개만 선택이 됨 -->
+          </tr>
+          <tr>
+            <td>
+              <label for="birth">생 년 월 일: </label></td>
+            <td>
+              <input type="date" name="birth" id="birth">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="email">이메일: </label>
+            </td>
+            <td>
+              <input type="text" name="mail_id" > @ 
+              <input type="text" name="email" id="email">
+                <select name="email" id="email" >
+                  <option value=""></option>
+                  <option value="">naver.com</option>
+                  <option value="">google.com</option>
+                  <option value="">gmail.com</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="RRN">주민등록번호</label>
+            </td>
+            <td>
+              <input type="text" maxlength="6">-<input type="text" name="" id="" maxlength="7">
+            </td>
+          </tr>
+          <tr>
+            <td><label for="phone">휴 대 전 화: </label></td>
+            <td>
+              <select name="" id="">
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="070">070</option>
+                <option value="self">직 접 입 력</option> 
+              </select>-<input type="text" name="phone" maxlength="4">-<input type="text" name="phone" maxlength="4">
+
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </body>
+</html>
