@@ -43,6 +43,31 @@
         }
       }
     }
+
+    function emailinput(){
+      if(document.getElementById("selectem").value == "1"){
+        document.getElementById("email1").value = "";
+        document.getElementById("email1").readOnly = false;
+      }
+      else{
+        document.getElementById("email1").value = document.getElementById("selectem").value;
+        document.getElementById("email1").readOnly = true;
+      }
+    }
+
+    function autoPH(){
+      var phone_num1 = document.getElementById("phoneInput1")
+      var phone_num2 = document.getElementById("phoneInput2")
+
+      if(phone_num1.value.length == 4){
+        phone_num2.focus();
+      }
+    }
+    function mask(){
+      var number = document.getElementById("num");
+      // number.value = number.substring(0,1)+number.substring(1).replace(/[0-9a-zA-Z]/g,"*");
+    }
+    mask();
   </script>
   <body>
     <form action="">
@@ -103,12 +128,12 @@
             </td>
             <td>
               <input type="text" name="mail_id" > @ 
-              <input type="text" name="email" id="email">
-                <select name="email" id="email" >
-                  <option value=""></option>
-                  <option value="">naver.com</option>
-                  <option value="">google.com</option>
-                  <option value="">gmail.com</option>
+              <input type="text" name="mail_mail" id="email1">
+                <select name="selt_email" id="selectem" onchange="emailinput()">
+                  <option value="1">직 접 입 력</option>
+                  <option value="naver.com">naver.com</option>
+                  <option value="google.com">google.com</option>
+                  <option value="gmail.com">gmail.com</option>
                 </select>
             </td>
           </tr>
@@ -117,7 +142,7 @@
               <label for="RRN">주민등록번호</label>
             </td>
             <td>
-              <input type="text" maxlength="6">-<input type="text" name="" id="" maxlength="7">
+              <input type="text" maxlength="6">-<input type="text" name="" id="num" maxlength="7">
             </td>
           </tr>
           <tr>
@@ -128,7 +153,7 @@
                 <option value="011">011</option>
                 <option value="070">070</option>
                 <option value="self">직 접 입 력</option> 
-              </select>-<input type="text" name="phone" maxlength="4">-<input type="text" name="phone" maxlength="4">
+              </select>-<input type="text" name="phone1" maxlength="4" id="phoneInput1" onkeyup="autoPH()">-<input type="text" name="phone2" maxlength="4" id="phoneInput2">
 
             </td>
           </tr>
