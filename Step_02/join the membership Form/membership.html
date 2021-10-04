@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="membership.css">
+    <title>회원 가입 테스트</title>
+  </head>
+  <script>
+    function combine(str){
+      var reg1 = /[a-z0-9]/;
+      var reg2 = /[a-z]/;    
+      var reg3 = /[0-9]/;
+      return(reg1.test(str) && reg2.test(str) && reg3.test(str));
+    }
+
+    function named(){
+      var named = document.getElementById("name");
+      var reg = /[가-힣]/; 
+      if(named !=""){
+        if(reg.test(named.value)==false){
+          alert("한글로 입력해주세요.");
+          named.value="";
+        }
+        else{
+          named.value=named.value;
+        }
+      }
+    }
+
+    function check_id1(){
+      var id = document.getElementById('user_id');
+      var idvalue = id.value;
+
+      if(idvalue !=""){
+        if(idvalue.length <6 || 15<idvalue.length || combine(idvalue) == false){
+          document.getElementById("check1").innerHTML="아이디 형식에 맞춰주세요.(영문,숫자 조합 6~15자)";
+          document.getElementById("check1").style.color="red";
+        }
+        else{
+          document.getElementById("check1").innerHTML="";
+        }
+      }
+    }
+
+    // ↓ 형식상의 아이디 중복확인
+    function check_id2(){
+      var id = document.getElementById('user_id').value;
+      if(id !=""){
+        if(6 < id.length < 15 && combine(id)==true){
+          alert("사용가능한 아이디입니다.")
+          document.getElementById("check1").innerHTML="사용가능한 아이디입니다.";
+          document.getElementById("check1").style.color="blue";
+        }
+      }
+    }
+
+    function checkpwd_1() {
+      var pwdd = document.getElementById('pwd').value;
+      var checkpwdd = document.getElementById('checkpwd').value;
+      var SC = ["!","@","#","$","%","*"];
+      var check_SC = 0;
+
+      for(var i=0;i<SC.length;i++) {
+                if(pwdd.indexOf(SC[i]) != -1){
+                    check_SC = 1;
+                }
+              }
+      if(pwdd !=""){
+        if(pwdd.length <8 || check_SC == 0 || combine(pwdd) == false){
+          document.getElementById("checkPW").innerHTML="영문, 숫자, 특수문자(필수) 조합 8자 이상";
+          document.getElementById("checkPW").style.color="red";
+        }
+        else{
+          document.getElementById("checkPW").innerHTML="안전한 비밀번호입니다.";
+          document.getElementById("checkPW").style.color="orange";
+        }
+      }
+      else{
+        document.getElementById("checkPW").innerHTML="";
+      }
+      if( pwdd !="" && checkpwdd !=""){
+        if( pwdd == checkpwdd){
+          document.getElementById('check').innerHTML="비밀번호가 일치합니다.";
+          document.getElementById('check').style.color='blue';
+        }
+        else{
+          document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+          document.getElementById('check').style.color='red';
+        }
+      }
+      else{
+        document.getElementById('check').innerHTML="";
+      }
+    }
+
+    function emailinput(){
+      if(document.getElementById("selectem").value == "1"){
+        document.getElementById("email1").value = "";
+        document.getElementById("email1").readOnly = false;
+      }
+      else{
+        document.getElementById("email1").value = document.getElementById("selectem").value;
+        document.getElementById("email1").readOnly = true;
+      }
+    }
+
+    function autoPH(){
+      var phone_num1 = document.getElementById("phoneInput1")
+      var phone_num2 = document.getElementById("phoneInput2")
+
+      if(phone_num1.value.length == 4){
+        phone_num2.focus();
+      }
+    }
+
+    // 주민번호 등록 시 앞자리에 따라 생년월일 입력, 뒷자리에 따라 성별 입력 (뒷자리 첫숫자가 1,3일때 남, 2,4일때 여)
+    function jomin(){
+      var jonum = document.getElementById("num");
+      var ma = document.getElementById("man");
+      var fe = document.getElementById("woman");
+      jen = jonum.value;
+      
+      if(jen.charAt(0)== 1 || jen.charAt(0)==3){
+        ma.value = "0";
+      }
+    }
+  </script>
+  <body>
+    <form action="">
+      <div class="div1">
+        <h2>회원정보 <span style="color: red;">(필수)</span></h2>
+        <table>
+          <tr>
+            <td>
+              <label for="name">이 름: </label>
+              </td>
+            <td>
+              <input type="text" id="name" size="10px" onchange="named()">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="userid">아 이 디: </label>
+            </td>
+            <td>
+              <input type="text" name="userid" id="user_id" size="20px" pattern="([a-z0-9_]{6,15}$)" onchange="check_id1()">
+              <input type="button" value="중복확인" id="Checkid" onclick="check_id2()">
+              <span id="check1" class="checked"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>비 밀 번 호</td>
+            <td>
+              <input type="password" name="PW1" id="pwd" size="20px" onchange="checkpwd_1()">
+              <span id="checkPW" class="checked"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>비 밀 번 호 확인</td>
+            <td>
+              <input type="password" name="PW2" id="checkpwd" size="20px" onchange="checkpwd_1()"> 
+              <span id="check" class="checked"></span></td>
+            <!-- onchange 속성: 이는 키보드로 입력 후 변화가 생겼을 때 발생하는 이벤트를 의미 -->
+            <!-- name, id, function_name이 겹치지않도록 지정해주는 것이 좋음 -->
+          </tr>
+          <tr>
+            <td>
+              <label for="birth">생 년 월 일: </label></td>
+            <td>
+              <input type="date" name="birth" id="birth">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="RRN">주민등록번호</label>
+            </td>
+            <td>
+              <input type="text" maxlength="6" placeholder="xxxxxx">-<input type="text" name="" id="num" maxlength="7" placeholder="xxxxxxx">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="gender">성 별: </label>
+            </td>
+            <td>
+              <input type="radio" name="gender" id="man" value="0">남
+              <input type="radio" name="gender" id="woman" value="1">여</td>
+              <!-- type radio는 같은 공간내의 radio 중 1개만 선택이 됨 -->
+          </tr>
+          <tr>
+            <td>
+              <label for="email">이메일: </label>
+            </td>
+            <td>
+              <input type="text" name="mail_id" > @ 
+              <input type="text" name="mail_mail" id="email1">
+                <select name="selt_email" id="selectem" onchange="emailinput()">
+                  <option value="1">직 접 입 력</option>
+                  <option value="naver.com">naver.com</option>
+                  <option value="google.com">google.com</option>
+                  <option value="gmail.com">gmail.com</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td><label for="phone">휴 대 전 화: </label></td>
+            <td>
+              <select name="" id="">
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="070">070</option>
+                <option value="self">직 접 입 력</option> 
+              </select>-<input type="text" name="phone1" maxlength="4" id="phoneInput1" onkeyup="autoPH()">-<input type="text" name="phone2" maxlength="4" id="phoneInput2">
+
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </body>
+</html>
