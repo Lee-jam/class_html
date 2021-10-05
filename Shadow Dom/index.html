@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Shadow Dom</title>
+</head>
+<body>
+  <!--
+    우리가 Html 코드를 짜다보면 복잡한 Html 태그를 발견할 수 있음.
+    근데 우리가 개발자 도구로 봤을 때는 음? 뭐지 input 하나 인데 어떻게 이렇게 만든거지?
+    <input type='range'>
+
+    Shadow DOM 을 보는 방법
+    개발자 도구 => 설정 => Elements => Show user agent shadow DOM 클릭!
+
+    Shadow DOM 을 직접 짜보자.
+  -->
+  <h2>Shadow Dom 확인</h2>
+  <input type='range'>
+  <input type='Date'>
+
+  <h2>Shadow Dom 만들기</h2>
+  
+  <div id='shadow'></div>
+
+  <custom-input></custom-input>
+
+  <script>
+    // attachShadow: 메서드는 지정된 요소에 그림자 DOM 트리를 연결하고 해당 요소에 대한 참조를 반환합니다
+    var shadowDom = document.querySelector('#shadow');
+
+    // create a shadowRoot
+    shadowDom.attachShadow({mode: 'open'});
+
+    // input
+    shadowDom.shadowRoot.innerHTML = '안녕하세요. <input />';
+
+    // Custom Element
+    class ShawDow extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({mode: 'open'});
+        this.shadowRoot.innerHTML = `<span>Custom Elemet</span>: <input />
+        <style>span{ color: blue }</style>`
+      }
+    }
+
+    // 원하는 html 태그를 한단어로 축약할 수 있음. customElements.define(태그명, 클래스);
+    customElements.define('custom-input', ShawDow);
+  </script>
+  
+</body>
+</html>
