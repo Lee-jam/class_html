@@ -1,0 +1,35 @@
+.header1 {
+  text-align: center;
+  background: brown;
+  font-size: 34px;
+}
+.sec1 {
+  float: left;
+  background: rgb(92, 34, 34);
+  width: 20%;
+  height: 500px;
+  
+}
+li {
+  list-style-type: none;
+  text-align: center;
+  padding-top: 10%;
+  font-size: 32px;
+}
+.if1 {
+  height: 248px; 
+  width: 80%;
+}
+.if2 {
+  height: 248px; 
+  width: 80%;
+}
+.if3 {
+  height: auto;
+  width: 100%;
+}
+footer {
+  background: brown;
+  text-align: center;
+  font-size: 34px;
+}
