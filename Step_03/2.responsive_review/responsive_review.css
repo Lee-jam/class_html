@@ -1,0 +1,71 @@
+*{
+  box-sizing: border-box;
+  text-align: center;
+}
+.head {
+  background-color: rgb(161, 160, 160);
+  text-align: center;
+  width: 100%;
+}
+.list li{
+  background-color: rgb(160, 160, 160);
+  display: block;
+}
+ul{
+  width: 100%;
+  overflow: hidden;
+  background-color: rgb(160, 160, 160);
+}
+.a1 .a2 .a3 .a4 .a5 {
+  width: 10%;
+  margin: 0 50px;
+}
+a {
+  display: block;
+  text-align: center; 
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  margin: 0 15px;
+  font-size: 3vw;
+}
+a:hover {
+  background-color: #414141;
+}
+li {
+  list-style-type: none;
+  overflow: hidden;
+  text-align: center;
+  float: left;
+}
+.left {
+  background-color: rgb(160, 160, 160);
+  float: left;
+  width: 20%;
+  display: block;
+}
+.center{
+  float: left;
+  width: 60%;
+  display: block;
+}
+.right {
+  background-color: rgb(160, 160, 160);
+  float: left;
+  width: 20%;
+  display: block;
+}
+.change {
+  background-color: rgb(160, 160, 160);
+  float: left;
+  width: 100%;
+  display: block;
+  font-size: 1vw;
+}
+
+@media only screen and (max-width: 620px) {
+  .left, .center, .right{
+    width: 100%;
+  }
+  
+}
