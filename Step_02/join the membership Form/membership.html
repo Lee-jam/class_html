@@ -8,6 +8,7 @@
     <title>회원 가입 테스트</title>
   </head>
   <script>
+    
     function combine(str){
       var reg1 = /[a-z0-9]/;
       var reg2 = /[a-z]/;    
@@ -22,6 +23,7 @@
         if(reg.test(named.value)==false){
           alert("한글로 입력해주세요.");
           named.value="";
+          named.focus();
         }
         else{
           named.value=named.value;
@@ -43,16 +45,37 @@
         }
       }
     }
-
+    var idcheck = ["abc123","ids123","ids456","qwer1234"];
     // ↓ 형식상의 아이디 중복확인
+
     function check_id2(){
       var id = document.getElementById('user_id').value;
-      if(id !=""){
-        if(6 < id.length < 15 && combine(id)==true){
-          alert("사용가능한 아이디입니다.")
-          document.getElementById("check1").innerHTML="사용가능한 아이디입니다.";
-          document.getElementById("check1").style.color="blue";
+      var id_ck = 0;
+      
+      for(var i=0;i<idcheck.length;i++){
+        if(id.indexOf(idcheck[i]) != -1){
+          id_ck = 1;
         }
+      }
+      if(id !=""){
+        if(6 < id.length && id.length < 15 && combine(id)==true){
+            if(id_ck == 0){
+              alert("사용가능한 아이디입니다.")
+              document.getElementById("check1").innerHTML="사용가능한 아이디입니다.";
+              document.getElementById("check1").style.color="blue";
+            }
+          else {
+              alert("중복된 아이디입니다.")
+              id="";
+              document.getElementById('user_id').focus();
+            }
+        }
+        else{
+          alert("형식에 맞지않습니다.")
+          id="";
+          document.getElementById('user_id').focus();
+        }
+        
       }
     }
 
@@ -63,10 +86,10 @@
       var check_SC = 0;
 
       for(var i=0;i<SC.length;i++) {
-                if(pwdd.indexOf(SC[i]) != -1){
-                    check_SC = 1;
-                }
-              }
+        if(pwdd.indexOf(SC[i]) != -1){
+          check_SC = 1;
+        }
+      }
       if(pwdd !=""){
         if(pwdd.length <8 || check_SC == 0 || combine(pwdd) == false){
           document.getElementById("checkPW").innerHTML="영문, 숫자, 특수문자(필수) 조합 8자 이상";
@@ -107,28 +130,71 @@
     }
 
     function autoPH(){
-      var phone_num1 = document.getElementById("phoneInput1")
-      var phone_num2 = document.getElementById("phoneInput2")
+      var phone_sel = document.getElementById("phsel");
+      var phone_num1 = document.getElementById("phoneInput1");
+      var phone_num2 = document.getElementById("phoneInput2");
 
+      if(phone_sel.value != 0){
+        phone_num1.focus();
+      }
       if(phone_num1.value.length == 4){
         phone_num2.focus();
       }
     }
+    function autoJoo(){
+      var fjoonum = document.getElementById("fnum");
+      var joonum = document.getElementById("num");
+      var eid = document.getElementById("email_id");
 
+      if(fjoonum.value.length == 6){
+        joonum.focus();
+      }
+      if(joonum.value.length == 1){
+        joomin();
+      }
+    }
     // 주민번호 등록 시 앞자리에 따라 생년월일 입력, 뒷자리에 따라 성별 입력 (뒷자리 첫숫자가 1,3일때 남, 2,4일때 여)
-    function jomin(){
-      var jonum = document.getElementById("num");
+    function joomin(){
+      var joonum = document.getElementById("num");
       var ma = document.getElementById("man");
       var fe = document.getElementById("woman");
-      jen = jonum.value;
+      var eid = document.getElementById("email_id")
+      jen = joonum.value;
       
-      if(jen.charAt(0)== 1 || jen.charAt(0)==3){
-        ma.value = "0";
+      if(jen.charAt(0)== "1" || jen.charAt(0) =="3"){
+        ma.checked = true;
+        fe.checked = false;
+        eid.focus();
+      }
+      else if(jen.charAt(0)== "2" || jen.charAt(0) =="4"){
+        ma.checked = false;
+        fe.checked = true;
+        eid.focus();
+      }
+      else{
+        ma.checked = false;
+        fe.checked = false;
+      }
+    }
+    function sendweb(){
+      
+      var nm = document.getElementById("name").value;
+      var id = document.getElementById("check1").value;
+      var pw = document.getElementById("checkPW").value;
+      var fjoo = document.getElementById("fnum").value;
+      var bjoo = document.getElementById("num").value;
+      var ph1 = document.getElementById("phoneInput1").value;
+      var ph2 = document.getElementById("phoneInput2").value;
+      if(nm !=""&&id!=""&&pw!=""&&fjoo!=""&&bjoo!=""&&ph1!=""&&ph2!=""){
+        document.myform.action="nextscreen1.html";
+      }
+      else{
+        alert("기입되지 않은 정보가 있습니다. 다시 기입해주세요.")
       }
     }
   </script>
   <body>
-    <form action="">
+    <form action="" name="myform">
       <div class="div1">
         <h2>회원정보 <span style="color: red;">(필수)</span></h2>
         <table>
@@ -167,17 +233,10 @@
           </tr>
           <tr>
             <td>
-              <label for="birth">생 년 월 일: </label></td>
-            <td>
-              <input type="date" name="birth" id="birth">
-            </td>
-          </tr>
-          <tr>
-            <td>
               <label for="RRN">주민등록번호</label>
             </td>
             <td>
-              <input type="text" maxlength="6" placeholder="xxxxxx">-<input type="text" name="" id="num" maxlength="7" placeholder="xxxxxxx">
+              <input type="text" maxlength="6" placeholder="xxxxxx" id="fnum" onkeyup="autoJoo()">-<input type="text" name="joo" id="num" maxlength="1" placeholder="x" onkeyup="autoJoo()"><span>xxxxxx</span>
             </td>
           </tr>
           <tr>
@@ -194,7 +253,7 @@
               <label for="email">이메일: </label>
             </td>
             <td>
-              <input type="text" name="mail_id" > @ 
+              <input type="text" name="mail_id" id="email_id"> @ 
               <input type="text" name="mail_mail" id="email1">
                 <select name="selt_email" id="selectem" onchange="emailinput()">
                   <option value="1">직 접 입 력</option>
@@ -207,13 +266,17 @@
           <tr>
             <td><label for="phone">휴 대 전 화: </label></td>
             <td>
-              <select name="" id="">
+              <select name="" id="phsel" onchange="autoPH()">
                 <option value="010">010</option>
                 <option value="011">011</option>
                 <option value="070">070</option>
-                <option value="self">직 접 입 력</option> 
               </select>-<input type="text" name="phone1" maxlength="4" id="phoneInput1" onkeyup="autoPH()">-<input type="text" name="phone2" maxlength="4" id="phoneInput2">
 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="submit" name="send" id="send" onclick="sendweb();" value="완료">
             </td>
           </tr>
         </table>
