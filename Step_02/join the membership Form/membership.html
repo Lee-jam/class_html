@@ -45,39 +45,38 @@
         }
       }
     }
-    var idcheck = ["abc123","ids123","ids456","qwer1234"];
-    // ↓ 형식상의 아이디 중복확인
 
-    function check_id2(){
-      var id = document.getElementById('user_id').value;
-      var id_ck = 0;
-      
-      for(var i=0;i<idcheck.length;i++){
-        if(id.indexOf(idcheck[i]) != -1){
-          id_ck = 1;
+    // 코드 리팩토링 (띄워쓰기, 코드 간격, 불필요한 소스제거 및 수정, 쿼테이션은 싱글, 더블 둘 중 하나만...)
+    function check_id2() {
+      // ↓ 형식상의 아이디 중복확인 (내부 function 으로 옮김.)
+      var idcheck = ['abcde123', 'idsss123', 'idsss456', 'qwer1234'];
+      // dom 객체를 선언하여 사용함.
+      var id = document.getElementById('user_id');
+      // 기존의 루프로 검사하는 것을 제거.
+      var id_ck = idcheck.indexOf(id.value) > -1 ? true : false;
+
+      if (id.value !== "") {
+        if (6 < id.value.length && id.value.length < 15 && combine(id.value)) {
+          if (!id_ck) {
+            alert('사용가능한 아이디입니다.');
+            // innerHTML 하나로 가능.
+            document.getElementById('check1').innerHTML='<span style="color:blue">사용가능한 아이디입니다.</span>';
+            // id 가 완료되면 pwd 로 포커스 되도록 추가.
+            document.getElementById('pwd').focus();
+          } else {
+            alert("중복된 아이디입니다.")
+            id.value = "";
+            id.focus();
+          }
         }
-      }
-      if(id !=""){
-        if(6 < id.length && id.length < 15 && combine(id)==true){
-            if(id_ck == 0){
-              alert("사용가능한 아이디입니다.")
-              document.getElementById("check1").innerHTML="사용가능한 아이디입니다.";
-              document.getElementById("check1").style.color="blue";
-            }
-          else {
-              alert("중복된 아이디입니다.")
-              id="";
-              document.getElementById('user_id').focus();
-            }
-        }
-        else{
+        else {
           alert("형식에 맞지않습니다.")
-          id="";
-          document.getElementById('user_id').focus();
+          id.value = "";
+          id.focus();
         }
-        
       }
     }
+    // 코드 리팩토링
 
     function checkpwd_1() {
       var pwdd = document.getElementById('pwd').value;
