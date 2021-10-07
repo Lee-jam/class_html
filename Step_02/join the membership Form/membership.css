@@ -11,3 +11,6 @@ table {
 .checked {
 	font-size: 5px;
 }
+#num{
+	width: 9px;
+}

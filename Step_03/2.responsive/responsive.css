@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+.head {
+  text-align: center;
+  background: rgb(175, 175, 175);
+  margin-bottom: -3%;
+}
+.link a {
+  background: rgb(175, 175, 175);
+  padding: 8px;
+  margin-top: 7px;
+  display: block;
+  width: 100%;
+  color: black;
+}
+.link {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+.main {
+  float: left;
+  padding: 0 20px;
+  margin-top: 30px;
+  width: 60%;
+  background: rgb(250, 250, 250);
+}
+.about {
+  background: rgb(175, 175, 175);
+  float: left;
+  width: 20%;
+  padding: 15px;
+  margin-top: 7px;
+  text-align: center;
+}
+.end {
+  background: rgb(175, 175, 175);
+  width: 100%;
+  float: left;
+  margin-top:7px;
+}
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .link, .main, .about {
+    width: 100%;
+  }
+}
