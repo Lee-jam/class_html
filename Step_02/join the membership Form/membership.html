@@ -5,197 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="membership.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>회원 가입 테스트</title>
+
   </head>
-  <script>
-    
-    function combine(str){
-      var reg1 = /[a-z0-9]/;
-      var reg2 = /[a-z]/;    
-      var reg3 = /[0-9]/;
-      return(reg1.test(str) && reg2.test(str) && reg3.test(str));
-    }
 
-    function named(){
-      var named = document.getElementById("name");
-      var reg = /[가-힣]/; 
-      if(named !=""){
-        if(reg.test(named.value)==false){
-          alert("한글로 입력해주세요.");
-          named.value="";
-          named.focus();
-        }
-        else{
-          named.value=named.value;
-        }
-      }
-    }
-
-    function check_id1(){
-      var id = document.getElementById('user_id');
-      var idvalue = id.value;
-
-      if(idvalue !=""){
-        if(idvalue.length <6 || 15<idvalue.length || combine(idvalue) == false){
-          document.getElementById("check1").innerHTML="아이디 형식에 맞춰주세요.(영문,숫자 조합 6~15자)";
-          document.getElementById("check1").style.color="red";
-        }
-        else{
-          document.getElementById("check1").innerHTML="";
-        }
-      }
-    }
-
-    // 코드 리팩토링 (띄워쓰기, 코드 간격, 불필요한 소스제거 및 수정, 쿼테이션은 싱글, 더블 둘 중 하나만...)
-    function check_id2() {
-      // ↓ 형식상의 아이디 중복확인 (내부 function 으로 옮김.)
-      var idcheck = ['abcde123', 'idsss123', 'idsss456', 'qwer1234'];
-      // dom 객체를 선언하여 사용함.
-      var id = document.getElementById('user_id');
-      // 기존의 루프로 검사하는 것을 제거.
-      var id_ck = idcheck.indexOf(id.value) > -1 ? true : false;
-
-      if (id.value !== "") {
-        if (6 < id.value.length && id.value.length < 15 && combine(id.value)) {
-          if (!id_ck) {
-            alert('사용가능한 아이디입니다.');
-            // innerHTML 하나로 가능.
-            document.getElementById('check1').innerHTML = '<span style="color:blue">사용가능한 아이디입니다.</span>';
-            // id 가 완료되면 pwd 로 포커스 되도록 추가.
-            document.getElementById('pwd').focus();
-          } else {
-            alert("중복된 아이디입니다.")
-            id.value = "";
-            id.focus();
-          }
-        }
-        else {
-          alert("형식에 맞지않습니다.")
-          id.value = "";
-          id.focus();
-        }
-      }
-    }
-    // 코드 리팩토링
-
-    function checkpwd_1() {
-      var pwdd = document.getElementById('pwd').value;
-      var checkpwdd = document.getElementById('checkpwd').value;
-      var SC = ["!","@","#","$","%","*"];
-      var check_SC = 0;
-
-      for(var i=0;i<SC.length;i++) {
-        if(pwdd.indexOf(SC[i]) != -1){
-          check_SC = 1;
-        }
-      }
-      if(pwdd !=""){
-        if(pwdd.length <8 || check_SC == 0 || combine(pwdd) == false){
-          document.getElementById("checkPW").innerHTML="영문, 숫자, 특수문자(필수) 조합 8자 이상";
-          document.getElementById("checkPW").style.color="red";
-        }
-        else{
-          document.getElementById("checkPW").innerHTML="안전한 비밀번호입니다.";
-          document.getElementById("checkPW").style.color="orange";
-        }
-      }
-      else{
-        document.getElementById("checkPW").innerHTML="";
-      }
-      if( pwdd !="" && checkpwdd !=""){
-        if( pwdd == checkpwdd){
-          document.getElementById('check').innerHTML="비밀번호가 일치합니다.";
-          document.getElementById('check').style.color='blue';
-        }
-        else{
-          document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
-          document.getElementById('check').style.color='red';
-        }
-      }
-      else{
-        document.getElementById('check').innerHTML="";
-      }
-    }
-
-    function emailinput(){
-      if(document.getElementById("selectem").value == "1"){
-        document.getElementById("email1").value = "";
-        document.getElementById("email1").readOnly = false;
-      }
-      else{
-        document.getElementById("email1").value = document.getElementById("selectem").value;
-        document.getElementById("email1").readOnly = true;
-      }
-    }
-
-    function autoPH(){
-      var phone_sel = document.getElementById("phsel");
-      var phone_num1 = document.getElementById("phoneInput1");
-      var phone_num2 = document.getElementById("phoneInput2");
-
-      if(phone_sel.value != 0){
-        phone_num1.focus();
-      }
-      if(phone_num1.value.length == 4){
-        phone_num2.focus();
-      }
-    }
-    function autoJoo(){
-      var fjoonum = document.getElementById("fnum");
-      var joonum = document.getElementById("num");
-      var eid = document.getElementById("email_id");
-
-      if(fjoonum.value.length == 6){
-        joonum.focus();
-      }
-      if(joonum.value.length == 1){
-        joomin();
-      }
-    }
-    // 주민번호 등록 시 앞자리에 따라 생년월일 입력, 뒷자리에 따라 성별 입력 (뒷자리 첫숫자가 1,3일때 남, 2,4일때 여)
-    function joomin(){
-      var joonum = document.getElementById("num");
-      var ma = document.getElementById("man");
-      var fe = document.getElementById("woman");
-      var eid = document.getElementById("email_id")
-      jen = joonum.value;
-      
-      if(jen.charAt(0)== "1" || jen.charAt(0) =="3"){
-        ma.checked = true;
-        fe.checked = false;
-        eid.focus();
-      }
-      else if(jen.charAt(0)== "2" || jen.charAt(0) =="4"){
-        ma.checked = false;
-        fe.checked = true;
-        eid.focus();
-      }
-      else{
-        ma.checked = false;
-        fe.checked = false;
-      }
-    }
-    function sendweb(){
-      
-      var nm = document.getElementById("name").value;
-      var id = document.getElementById("check1").value;
-      var pw = document.getElementById("checkPW").value;
-      var fjoo = document.getElementById("fnum").value;
-      var bjoo = document.getElementById("num").value;
-      var ph1 = document.getElementById("phoneInput1").value;
-      var ph2 = document.getElementById("phoneInput2").value;
-      if(nm !=""&&id!=""&&pw!=""&&fjoo!=""&&bjoo!=""&&ph1!=""&&ph2!=""){
-        document.myform.action="nextscreen1.html";
-      }
-      else{
-        alert("기입되지 않은 정보가 있습니다. 다시 기입해주세요.")
-      }
-    }
-  </script>
   <body>
     <form action="" name="myform">
       <div class="div1">
-        <h2>회원정보 <span style="color: red;">(필수)</span></h2>
+        <h2>회원정보 <span class="text-danger">(필수)</span></h2>
         <table>
           <tr>
             <td>
@@ -211,7 +29,7 @@
             </td>
             <td>
               <input type="text" name="userid" id="user_id" size="20px" pattern="([a-z0-9_]{6,15}$)" onchange="check_id1()">
-              <input type="button" value="중복확인" id="Checkid" onclick="check_id2()">
+              <input type="button" value="중복확인" id="Checkid" onclick="check_id2()" class="btn btn-success">
               <span id="check1" class="checked"></span>
             </td>
           </tr>
@@ -281,5 +99,189 @@
         </table>
       </div>
     </form>
+    <script>
+      var nm = document.getElementById("name");
+      function combine(str){
+        var reg1 = /[a-z0-9]/;
+        var reg2 = /[a-z]/;    
+        var reg3 = /[0-9]/;
+        return(reg1.test(str) && reg2.test(str) && reg3.test(str));
+      }
+  
+      function named(){
+        var named = document.getElementById("name");
+        var reg = /[가-힣]/; 
+        if(named !=""){
+          if(reg.test(named.value)==false){
+            alert("한글로 입력해주세요.");
+            named.value="";
+            named.focus();
+          }
+          else{
+            named.value=named.value;
+          }
+        }
+      }
+  
+      function check_id1(){
+        var id = document.getElementById('user_id');
+        var idvalue = id.value;
+  
+        if(idvalue !=""){
+          if(idvalue.length <6 || 15<idvalue.length || combine(idvalue) == false){
+            document.getElementById("check1").innerHTML="아이디 형식에 맞춰주세요.(영문,숫자 조합 6~15자)";
+            document.getElementById("check1").style.color="red";
+          }
+          else{
+            document.getElementById("check1").innerHTML="";
+          }
+        }
+      }
+  
+      // 코드 리팩토링 (띄워쓰기, 코드 간격, 불필요한 소스제거 및 수정, 쿼테이션은 싱글, 더블 둘 중 하나만...)
+      function check_id2() {
+        // ↓ 형식상의 아이디 중복확인 (내부 function 으로 옮김.)
+        var idcheck = ['abcde123', 'idsss123', 'idsss456', 'qwer1234'];
+        // dom 객체를 선언하여 사용함.
+        var id = document.getElementById('user_id');
+        // 기존의 루프로 검사하는 것을 제거.
+        var id_ck = idcheck.indexOf(id.value) > -1 ? true : false;
+  
+        if (id.value !== "") {
+          if (6 < id.value.length && id.value.length < 15 && combine(id.value)) {
+            if (!id_ck) {
+              alert('사용가능한 아이디입니다.');
+              // innerHTML 하나로 가능.
+              document.getElementById('check1').innerHTML = '<span style="color:blue">사용가능한 아이디입니다.</span>';
+              // id 가 완료되면 pwd 로 포커스 되도록 추가.
+              document.getElementById('pwd').focus();
+            } else {
+              alert("중복된 아이디입니다.")
+              id.value = "";
+              id.focus();
+            }
+          }
+          else {
+            alert("형식에 맞지않습니다.")
+            id.value = "";
+            id.focus();
+          }
+        }
+      }
+      // 코드 리팩토링
+  
+      function checkpwd_1() {
+        var pwdd = document.getElementById('pwd').value;
+        var checkpwdd = document.getElementById('checkpwd').value;
+        var SC = ["!","@","#","$","%","*"];
+        var check_SC = 0;
+  
+        for(var i=0;i<SC.length;i++) {
+          if(pwdd.indexOf(SC[i]) != -1){
+            check_SC = 1;
+          }
+        }
+        if(pwdd !=""){
+          if(pwdd.length <8 || check_SC == 0 || combine(pwdd) == false){
+            document.getElementById("checkPW").innerHTML="영문, 숫자, 특수문자(필수) 조합 8자 이상";
+            document.getElementById("checkPW").style.color="red";
+          }
+          else{
+            document.getElementById("checkPW").innerHTML="안전한 비밀번호입니다.";
+            document.getElementById("checkPW").style.color="orange";
+          }
+        }
+        else{
+          document.getElementById("checkPW").innerHTML="";
+        }
+        if( pwdd !="" && checkpwdd !=""){
+          if( pwdd == checkpwdd){
+            document.getElementById('check').innerHTML="비밀번호가 일치합니다.";
+            document.getElementById('check').style.color='blue';
+          }
+          else{
+            document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+            document.getElementById('check').style.color='red';
+          }
+        }
+        else{
+          document.getElementById('check').innerHTML="";
+        }
+      }
+  
+      function emailinput(){
+        if(document.getElementById("selectem").value == "1"){
+          document.getElementById("email1").value = "";
+          document.getElementById("email1").readOnly = false;
+        }
+        else{
+          document.getElementById("email1").value = document.getElementById("selectem").value;
+          document.getElementById("email1").readOnly = true;
+        }
+      }
+  
+      function autoPH(){
+        var phone_sel = document.getElementById("phsel");
+        var phone_num1 = document.getElementById("phoneInput1");
+        var phone_num2 = document.getElementById("phoneInput2");
+  
+        if(phone_sel.value != 0){
+          phone_num1.focus();
+        }
+        if(phone_num1.value.length == 4){
+          phone_num2.focus();
+        }
+      }
+      function autoJoo(){
+        var fjoonum = document.getElementById("fnum");
+        var joonum = document.getElementById("num");
+        var eid = document.getElementById("email_id");
+  
+        if(fjoonum.value.length == 6){
+          joonum.focus();
+        }
+        if(joonum.value.length == 1){
+          joomin();
+        }
+      }
+      // 주민번호 등록 시 앞자리에 따라 생년월일 입력, 뒷자리에 따라 성별 입력 (뒷자리 첫숫자가 1,3일때 남, 2,4일때 여)
+      function joomin(){
+        var joonum = document.getElementById("num");
+        var ma = document.getElementById("man");
+        var fe = document.getElementById("woman");
+        var eid = document.getElementById("email_id")
+        jen = joonum.value;
+        
+        if(jen.charAt(0)== "1" || jen.charAt(0) =="3"){
+          ma.checked = true;
+          fe.checked = false;
+          eid.focus();
+        }
+        else if(jen.charAt(0)== "2" || jen.charAt(0) =="4"){
+          ma.checked = false;
+          fe.checked = true;
+          eid.focus();
+        }
+        else{
+          ma.checked = false;
+          fe.checked = false;
+        }
+      }
+      function sendweb(){
+        var id = document.getElementById("check1").value;
+        var pw = document.getElementById("checkPW").value;
+        var fjoo = document.getElementById("fnum").value;
+        var bjoo = document.getElementById("num").value;
+        var ph1 = document.getElementById("phoneInput1").value;
+        var ph2 = document.getElementById("phoneInput2").value;
+        if(nm.value !=""&&id!=""&&pw!=""&&fjoo!=""&&bjoo!=""&&ph1!=""&&ph2!=""){
+          document.myform.action="nextscreen1.html";
+        }
+        else{
+          alert("기입되지 않은 정보가 있습니다. 다시 기입해주세요.")
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>
