@@ -1,16 +1,97 @@
-table {
-	border: 1px solid black;
+form {
+	background-color: rgb(245, 245, 245);
+}
+
+.header {
+	width: 100%;
+	height: 20%;
+	text-align: center;
+	font-size: 6vw;
+	color: rgb(3, 165, 3);
 }
 
 .div1 {
-	position: absolute;
-	top: 20%;
-	left: 50%;
-	transform: translate(-50%,-50%);
+	width: 100%;
+	height: 60%;
+	
 }
+
+.footer {
+	width: 100%;
+	height: 20%;
+	margin-top: 5%;
+	padding-bottom: 2%;
+	text-align: center;
+}
+
+.foot {
+	color: black;
+	text-decoration: none;
+	font-size: 1.2vw;
+}
+
+.top {
+	text-align: center;
+	border-bottom: 1px solid lightgray;
+}
+
+table {
+	border-top: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .checked {
 	font-size: 5px;
 }
-#num{
-	width: 9px;
+
+#num {
+	width: 15px;
+}
+
+#fnum {
+	width: 64px;
+}
+
+input {
+	border-collapse: collapse;
+	border-radius: 1%;
+}
+
+#send {
+	float: right;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	margin-right: 1%;
+}
+#phoneInput1, #phoneInput2 {
+	width: 44px;
+}
+
+.item {
+	width: 20%;
+	text-align: center;
+	padding: 1%;
+	border-right: 1px solid lightgray;
+}
+
+.contents {
+	width: 80%;
+	padding: 1%;
+}
+
+.endswitch {
+	border-top: 1px solid lightgray;
+}
+
+#Checkid{
+	width: 7vw;
+	height: 3vw;
+	font-size: 1.2vw;
+	text-align: center;
+}
+
+#name, #user_id, #pwd, #checkpwd, #fnum, #num, #email_id, #email1, #phoneInput1, #phoneInput2 {
+	border-collapse: separate;
+	border-radius: 4px;
 }
