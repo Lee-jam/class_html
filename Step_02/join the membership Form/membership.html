@@ -25,13 +25,13 @@
             <td colspan="2" class="top">
               <h2>회원정보
                 <span class="text-danger"> (필수)</span>
-                <span style="color: red; text-align: right; font-size: 10px;">(* 필수 항목)</span>
+                <span class="h-span imp">(* 필수 항목)</span>
               </h2>
             </td>
           </tr>
           <tr>
             <td class="item">
-              <span style="color: red;">*</span><label for="name" style="font-size: 1vw;">이 름</label>
+              <span style="color: red;">*</span><label for="name">이 름</label>
               </td>
             <td class="contents">
               <input type="text" id="name" size="5vw" onchange="name_check()">
@@ -39,36 +39,36 @@
           </tr>
           <tr>
             <td class="item">
-              <span style="color: red;">*</span><label for="userid" style="font-size: 1vw;">아 이 디</label>
+              <span class="imp">*</span><label for="userid">아 이 디</label>
             </td>
             <td class="contents">
-              <input type="text" name="userid" id="user_id" size="20px" pattern="([a-z0-9_]{6,15}$)" onchange="check_id1()">
-              <input type="button" value="중복확인" id="Checkid" onclick="check_id2()" class="btn btn-success">
+              <input type="text" name="userid" id="user_id" pattern="([a-z0-9_]{6,15}$)" onchange="check_id1()">
+              <input type="button" value="중복확인" id="Checkid" class="btn btn-success"onclick="check_id2()">
               <span id="check1" class="checked"></span>
             </td>
           </tr>
           <tr>
             <td class="item">
-              <span style="color: red;">*</span><label for="" style="font-size: 1vw;">비 밀 번 호</label>
+              <span class="imp">*</span><label for="">비 밀 번 호</label>
           </td>
             <td class="contents">
-              <input type="password" name="PW1" id="pwd" size="20px" onchange="checkpwd_1()">
+              <input type="password" name="PW1" id="pwd" onchange="checkpwd_1()">
               <span id="checkPW" class="checked"></span>
             </td>
           </tr>
           <tr>
             <td class="item">
-              <span style="color: red;">*</span><label for="" style="font-size: 1vw;">비 밀 번 호 확인</label>
+              <span class="imp">*</span><label for="">비 밀 번 호 확인</label>
             </td>
             <td class="contents">
-              <input type="password" name="PW2" id="checkpwd" size="20px" onchange="checkpwd_1()"> 
+              <input type="password" name="PW2" id="checkpwd" onchange="checkpwd_1()"> 
               <span id="check" class="checked"></span></td>
             <!-- onchange 속성: 이는 키보드로 입력 후 변화가 생겼을 때 발생하는 이벤트를 의미 -->
             <!-- name, id, function_name이 겹치지않도록 지정해주는 것이 좋음 -->
           </tr>
           <tr>
             <td class="item">
-              <span style="color: red;">*</span><label for="RRN" style="font-size: 1vw;">주민등록번호</label>
+              <span class="imp">*</span><label for="RRN">주민등록번호</label>
             </td>
             <td class="contents">
               <input type="text" maxlength="6" placeholder="xxxxxx" id="fnum" onkeyup="autoJoo()">-<input type="text" name="joo" id="num" maxlength="1" placeholder="x" onkeyup="autoJoo()"><span>xxxxxx</span>
@@ -76,7 +76,7 @@
           </tr>
           <tr>
             <td class="item">
-              <label for="gender" style="font-size: 1vw;">성 별</label>
+              <label for="gender">성 별</label>
             </td>
             <td class="contents">
               <input type="radio" name="gender" id="man" value="0" onclick="return false">남
@@ -86,11 +86,10 @@
           </tr>
           <tr>
             <td class="item">
-              <label for="email" style="font-size: 1vw;">이메일</label>
+              <label for="email">이메일</label>
             </td>
             <td class="contents">
-              <input type="text" name="mail_id" id="email_id" style="width: 8vw;"> @ 
-              <input type="text" name="mail_mail" id="email1" style="width: 8vw;">
+              <input type="text" name="mail_id" id="email_id"> @ <input type="text" name="mail_mail" id="email1">
                 <select name="selt_email" id="selectem" onchange="emailinput()">
                   <option value="1">직 접 입 력</option>
                   <option value="naver.com">naver.com</option>
@@ -101,7 +100,7 @@
           </tr>
           <tr>
             <td class="item">
-              <label for="phone" style="font-size: 1vw;">휴 대 전 화</label>
+              <label for="phone">휴 대 전 화</label>
             </td>
             <td class="contents">
               <select name="" id="trsel" onchange="autoPH()">
